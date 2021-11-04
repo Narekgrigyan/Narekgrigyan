@@ -3,8 +3,6 @@
 class DbConnection
 {
 
-    private static $connection;
-
 
     public static function connect(): PDO
     {
@@ -13,15 +11,16 @@ class DbConnection
         $username = "root";
         $password = "";
         $database = "registration";
-
+//todo check $database, why don`t working;
 
         try {
-            self::$connection = new PDO("mysql:host = $host;dbname = $database", $username, $password);
-            self::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection = new PDO("mysql:host = $host;dbname = $database, $username, $password");
+            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection error" . $e->getMessage());
+
         }
 
-        return self::$connection;
+        return $connection;
     }
 }

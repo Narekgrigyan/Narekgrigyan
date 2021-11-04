@@ -1,7 +1,7 @@
 <?php
-session_start();
-include_once "../Model/DbConnection.php";
-require_once "../Model/UserManager.php";
+//session_start();
+//include_once "../Model/DbConnection.php";
+//require_once "../Model/UserManager.php";
 
 class Register
 {
@@ -42,17 +42,21 @@ class Register
             }
 
         }
-        if (!$errors) {
+
+        if (!isset($errors)) {
+
             $userManager = new UserManager();
             if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
+
                 $_SESSION[$email] = 'email';
                 header('location: Profile.php');
             } else {
-                echo "don`t working";
+                $errors["email"] = "don`t working";
             }
         }
-        require_once(__DIR__ . '/../View/registerPage.php');
+        require('../View/registerPage.php');
     }
 }
-$obj = new Register();
-$obj->registerAction();
+//$obj = new Register();
+//$obj->registerAction();
+//var_dump($_POST['reg_user']);
