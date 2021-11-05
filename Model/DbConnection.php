@@ -3,7 +3,6 @@
 class DbConnection
 {
 
-
     public static function connect(): PDO
     {
 
@@ -14,7 +13,7 @@ class DbConnection
 //todo check $database, why don`t working;
 
         try {
-            $connection = new PDO("mysql:host = $host;dbname = $database, $username, $password");
+            $connection = new PDO("mysql:host = $host;dbname = $database", $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Connection error" . $e->getMessage());

@@ -1,4 +1,8 @@
 {
+  "main/index": {
+    "controller": "main",
+    "action": "index"
+  },
   "user/register": {
     "controller": "user",
     "action": "register"

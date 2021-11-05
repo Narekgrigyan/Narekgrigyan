@@ -1,22 +1,22 @@
 <?php
-//session_start();
-//include_once "../Model/DbConnection.php";
-//require_once "../Model/UserManager.php";
+session_start();
+include_once __DIR__ . "/../Model/DbConnection.php";
+require_once __DIR__ . "/../Model/UserManager.php";
+
 
 class Register
 {
     public function registerAction(): void
     {
-
-        $firstname = $_POST['firstname'] ?? '';
-        $lastname = $_POST['lastname'] ?? '';
-        $image = $_POST['image'] ?? '';
-        $email = $_POST['email'] ?? '';
-        $password = $_POST['password'] ?? '';
-        $verPassword = $_POST['passwordConfirm'] ?? '';
-
-
         if (isset($_POST['reg_user'])) {
+            $firstname = $_POST['firstname'] ?? '';
+            $lastname = $_POST['lastname'] ?? '';
+            $image = $_POST['image'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $verPassword = $_POST['passwordConfirm'] ?? '';
+
+
             $errors = [];
 
             if (empty($firstname)) {
@@ -41,22 +41,23 @@ class Register
                 echo "please fill correct password";
             }
 
-        }
-
-        if (!isset($errors)) {
-
-            $userManager = new UserManager();
-            if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
-
-                $_SESSION[$email] = 'email';
-                header('location: Profile.php');
-            } else {
-                $errors["email"] = "don`t working";
+            require __DIR__ . "/../View/registerPage.php";
+            if (!$errors) {
+                $userManager = new UserManager();
+                if ($userManager->checkEmail($email)) {
+                    if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
+                        $_SESSION['email'] = $email;
+                        header('location: Profile.php');
+                    } else {
+                        $errors['email'] = "don`t working";
+                    }
+                }else{
+                    echo "email already existing";
+                }
             }
         }
-        require('../View/registerPage.php');
     }
 }
-//$obj = new Register();
-//$obj->registerAction();
-//var_dump($_POST['reg_user']);
+
+$obj = new Register();
+$obj->registerAction();

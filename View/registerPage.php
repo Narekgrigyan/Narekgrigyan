@@ -17,7 +17,7 @@
             <div class="form-group column">
                 <label for="staticEmail" class=" col-form-label">FirstName</label>
                 <div class="col-sm-10">
-                    <input type="text" name="firstname" class="form-control" id="staticEmail" placeholder="First Name">
+                    <input type="text" name="firstname" class="form-control" placeholder="First Name">
                     <?php
                     if (isset($errors['firstname'])) {
                         $errorFirstname = $errors['firstname'];
@@ -29,7 +29,7 @@
             <div class="form-group column">
                 <label for="staticEmail" class="col-form-label">LastName</label>
                 <div class="col-sm-10">
-                    <input type="text" name="lastname" class="form-control" id="staticEmail" placeholder="Last Name">
+                    <input type="text" name="lastname" class="form-control" placeholder="Last Name">
                     <?php
                     if (isset($errors['firstname'])) {
                         $errorFirstname = $errors['firstname'];
