@@ -13,7 +13,7 @@
         <h2>Register</h2>
     </div>
     <div class="column col-3">
-        <form method="post" action="../Controller/Register.php">
+        <form method="post" action="register.php">
             <div class="form-group column">
                 <label for="staticEmail" class=" col-form-label">FirstName</label>
                 <div class="col-sm-10">
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="col-sm-5">
-                <button type="submit" class="btn" name="reg_user">Register</button>
+                <button type="submit" class="btn btn-success" name="reg_user">Register</button>
             </div>
             <p>
                 Already a member? <a href="loginPage.php">Sign in</a>

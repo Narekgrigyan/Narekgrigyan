@@ -1,7 +1,7 @@
 <?php
-session_start();
-include_once __DIR__ . "/../Model/DbConnection.php";
-require_once __DIR__ . "/../Model/UserManager.php";
+//session_start();
+//include_once __DIR__ . "/../Model/DbConnection.php";
+//require_once __DIR__ . "/../Model/UserManager.php";
 
 
 class Register
@@ -9,12 +9,12 @@ class Register
     public function registerAction(): void
     {
         if (isset($_POST['reg_user'])) {
-            $firstname = $_POST['firstname'] ?? '';
-            $lastname = $_POST['lastname'] ?? '';
-            $image = $_POST['image'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $verPassword = $_POST['passwordConfirm'] ?? '';
+            $firstname = $_POST['firstname'];
+            $lastname = $_POST['lastname'];
+            $image = $_POST['image'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $verPassword = $_POST['passwordConfirm'];
 
 
             $errors = [];
@@ -41,23 +41,25 @@ class Register
                 echo "please fill correct password";
             }
 
-            require __DIR__ . "/../View/registerPage.php";
             if (!$errors) {
                 $userManager = new UserManager();
-                if ($userManager->checkEmail($email)) {
+//                var_dump(!$userManager->checkEmail($email));exit;
+                if (!$userManager->checkEmail($email)) {
+
                     if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
                         $_SESSION['email'] = $email;
                         header('location: Profile.php');
                     } else {
                         $errors['email'] = "don`t working";
                     }
-                }else{
+                } else {
                     echo "email already existing";
                 }
             }
+            require __DIR__ . "/../View/registerPage.php";
         }
     }
 }
 
-$obj = new Register();
-$obj->registerAction();
+$register = new Register();
+$register->registerAction();

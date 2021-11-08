@@ -13,21 +13,21 @@
         <h2>Login</h2>
     </div>
     <div class="row">
-        <form method="post" action="login">
+        <form method="post" action="../Controller/Login.php">
             <div class="form-group column">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="staticEmail" placeholder="E-mail">
+                    <input type="text" name="email" class="form-control" id="staticEmail" placeholder="E-mail">
                 </div>
             </div>
             <div class="form-group column">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
                 </div>
             </div>
             <div class="col-sm-5">
-                <button  type="submit" class="btn" name="reg_user">Login</button>
+                <button  type="submit" class="btn btn-success" name="log_user">Login</button>
             </div>
             <p>
                 Are you yet do not registered? <a href="registerPage.php">Sign up</a>

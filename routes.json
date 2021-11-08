@@ -3,20 +3,20 @@
     "controller": "main",
     "action": "index"
   },
-  "user/register": {
-    "controller": "user",
+  "account/register": {
+    "controller": "account",
     "action": "register"
   },
-  "user/login": {
-    "controller": "user",
+  "account/login": {
+    "controller": "account",
     "action": "login"
   },
-  "user/logout": {
-    "controller": "user",
+  "account/logout": {
+    "controller": "account",
     "action": "logout"
   },
-  "user/profile": {
-    "controller": "user",
+  "account/profile": {
+    "controller": "account",
     "action": "profile"
   }
 }

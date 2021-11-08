@@ -16,6 +16,7 @@ class UserManager
         $query->bindParam(':image', $image);
         $query->bindParam(':email', $email);
         $query->bindParam(':password', $hash);
+//        var_dump($query);exit;
         return $query->execute();
 
     }
@@ -25,8 +26,8 @@ class UserManager
         $connection = DbConnection::connect();
         $query = $connection->prepare("SELECT * from users WHERE email = :email");
         $query->bindParam(':email', $email);
-        if ($query->rowCount() > 0) {
-            return true;
-        }
+        $query->execute();
+//        var_dump($query->rowCount() > 0);exit;
+        return $query->rowCount() > 0;
     }
 }
