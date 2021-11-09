@@ -1,6 +1,7 @@
 <?php
-include_once __DIR__ . "/../Model/DbConnection.php";
-require_once __DIR__ . "/../Model/UserManager.php";
+//session_start();
+//include_once __DIR__ . "/../Model/DbConnection.php";
+//require_once __DIR__ . "/../Model/UserManager.php";
 
 class Login
 {
@@ -21,11 +22,17 @@ class Login
             if (!$errors) {
                 $userManager = new UserManager();
 
-                if ($userManager->insertDetails($email, $password)) {
-                    $_SESSION['email'] = $email;
-                    header('location: Profile.php');
+                if ($userManager->validateEmail($email)) {
+
+                    if ($userManager->checkingForLogin($email, $password)) {
+
+                        $_SESSION['email'] = $email;
+                        header('location: Profile.php');
+                    } else {
+                        $errors['email'] = "your email or password incorrect";
+                    }
                 } else {
-                    $errors['email'] = "don`t working";
+                    $errors['email'] = "invalid email";
                 }
             }
         }
@@ -33,5 +40,5 @@ class Login
     }
 }
 
-$login = new Login();
-$login->loginAction();
+//$login = new Login();
+//$login->loginAction();

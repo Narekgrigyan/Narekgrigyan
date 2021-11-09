@@ -13,24 +13,36 @@
         <h2>Login</h2>
     </div>
     <div class="row">
-        <form method="post" action="../Controller/Login.php">
+        <form method="post" action="">
             <div class="form-group column">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
                     <input type="text" name="email" class="form-control" id="staticEmail" placeholder="E-mail">
+                    <?php
+                    if (isset($errors['email'])) {
+                        $errorEmail = $errors['email'];
+                        echo "<p style='color: red'>$errorEmail</p>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="form-group column">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                 <div class="col-sm-10">
                     <input type="password" name="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <?php
+                    if (isset($errors['password'])) {
+                        $errorPassword = $errors['password'];
+                        echo "<p style='color: red'>$errorPassword</p>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="col-sm-5">
                 <button  type="submit" class="btn btn-success" name="log_user">Login</button>
             </div>
             <p>
-                Are you yet do not registered? <a href="registerPage.php">Sign up</a>
+                Are you yet do not registered? <a href="../View/registerPage.php">Sign up</a>
             </p>
         </form>
     </div>

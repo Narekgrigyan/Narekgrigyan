@@ -1,4 +1,19 @@
+#Options -MultiViews
+#RewriteEngine On
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^([^\.]+)$ $index.php [NC,L]
 Options -MultiViews
+
 RewriteEngine On
+
+Options -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^([^\.]+)$ $index.php [NC,L]
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule profile/(.*)$ index.php?url=profile/index/$1 [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

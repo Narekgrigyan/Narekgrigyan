@@ -43,17 +43,19 @@ class Register
 
             if (!$errors) {
                 $userManager = new UserManager();
-//                var_dump(!$userManager->checkEmail($email));exit;
-                if (!$userManager->checkEmail($email)) {
-
-                    if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
-                        $_SESSION['email'] = $email;
-                        header('location: Profile.php');
+                if ($userManager->validateEmail($email)) {
+                    if (!$userManager->checkEmail($email)) {
+                        if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
+                            $_SESSION['email'] = $email;
+                            header('location: Profile.php');
+                        } else {
+                            $errors['email'] = "don`t working";
+                        }
                     } else {
-                        $errors['email'] = "don`t working";
+                        echo "email already existing";
                     }
-                } else {
-                    echo "email already existing";
+                }else{
+                    $errors['email'] = "your email are invalid";
                 }
             }
             require __DIR__ . "/../View/registerPage.php";
@@ -61,5 +63,5 @@ class Register
     }
 }
 
-$register = new Register();
-$register->registerAction();
+//$register = new Register();
+//$register->registerAction();
