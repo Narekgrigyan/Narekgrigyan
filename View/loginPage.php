@@ -13,7 +13,7 @@
         <h2>Login</h2>
     </div>
     <div class="row">
-        <form method="post" action="">
+        <form method="post" action="Login">
             <div class="form-group column">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
@@ -42,7 +42,7 @@
                 <button  type="submit" class="btn btn-success" name="log_user">Login</button>
             </div>
             <p>
-                Are you yet do not registered? <a href="../View/registerPage.php">Sign up</a>
+                Are you yet do not registered? <a href="Register">Sign up</a>
             </p>
         </form>
     </div>

@@ -27,7 +27,7 @@ class Login
                     if ($userManager->checkingForLogin($email, $password)) {
 
                         $_SESSION['email'] = $email;
-                        header('location: Profile.php');
+                        header('location: Profile');
                     } else {
                         $errors['email'] = "your email or password incorrect";
                     }

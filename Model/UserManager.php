@@ -4,7 +4,7 @@ require_once "DbConnection.php";
 
 class UserManager
 {
-    public function insertDetails($firstname, $lastname, $image, $email, $password): bool
+    public function getParams($firstname, $lastname, $image, $email, $password): bool
     {
         $connection = DbConnection::connect();
         $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -25,9 +25,10 @@ class UserManager
         $query = $connection->prepare("SELECT * from users WHERE email = :email");
         $query->bindParam(':email', $email);
         $query->execute();
-//        var_dump($query->rowCount() > 0);exit;
-        return $query->rowCount() > 0;
-
+        if (isset($query)) {
+            return $query->rowCount() > 0;
+        }
+var_dump($query->rowCount() > 0);exit;
     }
 
     public function checkingForLogin($email, $password): bool

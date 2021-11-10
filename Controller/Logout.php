@@ -1,12 +1,10 @@
 <?php
-session_start();
+
 class Logout
 {
     public function logoutAction(): void
     {
         session_destroy();
-        header('location: Login.php');
+        header('location: Login');
     }
 }
-$logout = new Logout();
-$logout->logoutAction();

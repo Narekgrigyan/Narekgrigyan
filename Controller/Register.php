@@ -45,21 +45,21 @@ class Register
                 $userManager = new UserManager();
                 if ($userManager->validateEmail($email)) {
                     if (!$userManager->checkEmail($email)) {
-                        if ($userManager->insertDetails($firstname, $lastname, $image, $email, $password)) {
+                        if ($userManager->getParams($firstname, $lastname, $image, $email, $password)) {
                             $_SESSION['email'] = $email;
-                            header('location: Profile.php');
+                            header('location: Profile');
                         } else {
                             $errors['email'] = "don`t working";
                         }
                     } else {
-                        echo "email already existing";
+                        $errors['email'] = "email already existing, Please fill again this field!";
                     }
                 }else{
                     $errors['email'] = "your email are invalid";
                 }
             }
-            require __DIR__ . "/../View/registerPage.php";
         }
+        require __DIR__ . "/../View/registerPage.php";
     }
 }
 

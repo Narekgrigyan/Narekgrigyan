@@ -1,16 +1,13 @@
 <?php
-//require_once("Register.php");
-//require_once("Login.php");
+require_once("Register.php");
+
 
 class Profile
 {
     public function profileAction(): void
     {
+
         echo "Welcome " . $_SESSION['email'];
-        echo "<a href='Logout.php'>Logout</a> ";
+        echo "<a href='Logout'>Logout</a> ";
     }
 }
-//$profile = new Profile();
-//$profile->profileAction();
-//echo "Welcome " . $_SESSION['email'];
-//echo "<a href='Logout.php'>Logout</a> ";
