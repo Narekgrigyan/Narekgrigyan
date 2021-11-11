@@ -1,8 +1,4 @@
 <?php
-//session_start();
-//include_once __DIR__ . "/../Model/DbConnection.php";
-//require_once __DIR__ . "/../Model/UserManager.php";
-
 
 class Register
 {
@@ -62,6 +58,3 @@ class Register
         require __DIR__ . "/../View/registerPage.php";
     }
 }
-
-//$register = new Register();
-//$register->registerAction();

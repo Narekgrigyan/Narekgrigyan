@@ -10,42 +10,33 @@ require_once "Controller/Profile.php";
 //require_once "Controller/Error404.php";
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$pathArray = explode('/', $path);
-$pathName = $pathArray[2] ?? '';
-//var_dump($pathName,$pathArray);exit;
+$pathArray = explode('/', trim($path, '/'));
+$accountName = $pathArray[1] ?? '';
+$actionName = $pathArray[2] ?? '';
+$margeNames = $accountName . '/' . $actionName;
 $json = file_get_contents('routes.json');
 $jsonRoute = json_decode($json, true);
 
+var_dump($jsonRoute[$margeNames]);
 
-if ($pathName === 'Register') {
-//    var_dump($pathName === 'Register');exit;
+if (isset($jsonRoute[$margeNames])) {
     $controller = new Register();
+
     $controller->registerAction();
 }
-//else
-//{
-//    $controller = new Error404();
-//    $controller->show_404();
-//}
-if ($pathName === 'Login') {
-    $controller = new Login();
-    $controller->loginAction();
-}
-if ($pathName === 'Profile') {
-//    var_dump($pathName === 'Profile');exit;
+
+if (isset($jsonRoute[$margeNames])) {
     $controller = new Profile();
     $controller->profileAction();
 }
-if ($pathName === 'Logout') {
+
+if (isset($jsonRoute[$margeNames])) {
+    $controller = new Login();
+    $controller->loginAction();
+}
+
+if (isset($jsonRoute[$margeNames])) {
     $controller = new Logout();
     $controller->logoutAction();
 }
-if ($pathName === 'Logout') {
-    $controller = new Logout();
-    $controller->logoutAction();
-}
-//if (!$pathName) {
-//    $controller = new Error404();
-//    $controller->show_404();
-//}
 

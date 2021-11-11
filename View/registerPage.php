@@ -13,7 +13,7 @@
         <h2>Register</h2>
     </div>
     <div class="column col-3">
-        <form method="post" action="Register">
+        <form method="post" action="register">
             <div class="form-group column">
                 <label for="staticEmail" class=" col-form-label">FirstName</label>
                 <div class="col-sm-10">

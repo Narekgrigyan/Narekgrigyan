@@ -40,6 +40,7 @@ var_dump($query->rowCount() > 0);exit;
         $query->execute();
         $getPasswordHashes = $query->fetchColumn();
         if (password_verify($password, $getPasswordHashes)) {
+
             return true;
         }
 
@@ -53,15 +54,4 @@ var_dump($query->rowCount() > 0);exit;
         }
         return false;
     }
-
-
-//    public function passVerify($password): bool
-//    {
-//
-//        $connection = DbConnection::connect();
-//        $query = $connection->prepare("SELECT `email` from users WHERE password = :password");
-//        $query->bindParam(':password', $password);
-//
-//
-//    }
 }

@@ -1,19 +1,19 @@
 {
 
   "account/register": {
-    "controller": "account",
-    "action": "register"
+    "controller": "Register",
+    "action": "registerAction"
   },
   "account/login": {
-    "controller": "account",
-    "action": "login"
+    "controller": "Login",
+    "action": "loginAction"
   },
   "account/logout": {
-    "controller": "account",
-    "action": "logout"
+    "controller": "Logout",
+    "action": "logoutAction"
   },
   "account/profile": {
-    "controller": "account",
-    "action": "profile"
+    "controller": "Profile",
+    "action": "profileAction"
   }
 }
