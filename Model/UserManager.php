@@ -1,7 +1,5 @@
 <?php
 
-require_once "DbConnection.php";
-
 class UserManager
 {
     public function getParams($firstname, $lastname, $image, $email, $password): bool
@@ -54,4 +52,5 @@ var_dump($query->rowCount() > 0);exit;
         }
         return false;
     }
+
 }

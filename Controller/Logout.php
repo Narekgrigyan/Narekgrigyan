@@ -4,7 +4,8 @@ class Logout
 {
     public function logoutAction(): void
     {
-        session_destroy();
-        header('location: Login');
+        if (session_destroy()) {
+            header('location: login');
+        }
     }
 }

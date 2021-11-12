@@ -86,7 +86,7 @@
                 <button type="submit" class="btn btn-success" name="reg_user">Register</button>
             </div>
             <p>
-                Already a member? <a href="Login">Sign in</a>
+                Already a member? <a href="login">Sign in</a>
             </p>
         </form>
     </div>

@@ -12,6 +12,27 @@ class Register
             $password = $_POST['password'];
             $verPassword = $_POST['passwordConfirm'];
 
+//            $file = $_FILES['image'];
+////            print_r($file);exit;
+//            $fileName = $_FILES['image']['name'];
+//            $fileTmpName = $_FILES['image']['tmp_name'];
+//            $fileSize = $_FILES['image']['size'];
+//            $fileError = $_FILES['image']['error'];
+//            $fileType = $_FILES['image']['type'];
+//
+//            $fileExt = explode('.', $fileName);
+//            $fileActualExt = strtolower(end($fileExt));
+//            print_r($fileExt);exit;
+
+
+
+
+//            if ($_FILES['file']['image']) {
+//                move_uploaded_file($_FILES['file']['tmp_name'], "image/jpg" . $_FILES['file']['image']);
+//                $image = "image/jpg" . $_FILES['file']['image'];
+//
+//            }
+
 
             $errors = [];
 
@@ -37,20 +58,21 @@ class Register
                 echo "please fill correct password";
             }
 
+
             if (!$errors) {
                 $userManager = new UserManager();
                 if ($userManager->validateEmail($email)) {
                     if (!$userManager->checkEmail($email)) {
                         if ($userManager->getParams($firstname, $lastname, $image, $email, $password)) {
                             $_SESSION['email'] = $email;
-                            header('location: Profile');
+                            header('location: profile');
                         } else {
                             $errors['email'] = "don`t working";
                         }
                     } else {
                         $errors['email'] = "email already existing, Please fill again this field!";
                     }
-                }else{
+                } else {
                     $errors['email'] = "your email are invalid";
                 }
             }
