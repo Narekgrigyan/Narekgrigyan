@@ -1,7 +1,4 @@
 <?php
-//session_start();
-//include_once __DIR__ . "/../Model/DbConnection.php";
-//require_once __DIR__ . "/../Model/UserManager.php";
 
 class Login
 {
@@ -39,6 +36,3 @@ class Login
         require_once __DIR__ . "/../View/loginPage.php";
     }
 }
-
-//$login = new Login();
-//$login->loginAction();

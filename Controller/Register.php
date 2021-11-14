@@ -12,27 +12,17 @@ class Register
             $password = $_POST['password'];
             $verPassword = $_POST['passwordConfirm'];
 
-//            $file = $_FILES['image'];
-////            print_r($file);exit;
-//            $fileName = $_FILES['image']['name'];
-//            $fileTmpName = $_FILES['image']['tmp_name'];
-//            $fileSize = $_FILES['image']['size'];
-//            $fileError = $_FILES['image']['error'];
-//            $fileType = $_FILES['image']['type'];
-//
-//            $fileExt = explode('.', $fileName);
-//            $fileActualExt = strtolower(end($fileExt));
+            $file = $_FILES['image'];
+            print_r($file);exit;
+            $fileName = $_FILES['image']['name'];
+            $fileTmpName = $_FILES['image']['tmp_name'];
+            $fileSize = $_FILES['image']['size'];
+            $fileError = $_FILES['image']['error'];
+            $fileType = $_FILES['image']['type'];
+
+            $fileExt = explode('.', $fileName);
+            $fileActualExt = strtolower(end($fileExt));
 //            print_r($fileExt);exit;
-
-
-
-
-//            if ($_FILES['file']['image']) {
-//                move_uploaded_file($_FILES['file']['tmp_name'], "image/jpg" . $_FILES['file']['image']);
-//                $image = "image/jpg" . $_FILES['file']['image'];
-//
-//            }
-
 
             $errors = [];
 
@@ -64,8 +54,7 @@ class Register
                 if ($userManager->validateEmail($email)) {
                     if (!$userManager->checkEmail($email)) {
                         if ($userManager->getParams($firstname, $lastname, $image, $email, $password)) {
-                            $_SESSION['email'] = $email;
-                            header('location: profile');
+                            header('location: login');
                         } else {
                             $errors['email'] = "don`t working";
                         }

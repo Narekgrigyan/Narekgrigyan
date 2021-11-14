@@ -26,7 +26,6 @@ class UserManager
         if (isset($query)) {
             return $query->rowCount() > 0;
         }
-var_dump($query->rowCount() > 0);exit;
     }
 
     public function checkingForLogin($email, $password): bool
@@ -51,6 +50,21 @@ var_dump($query->rowCount() > 0);exit;
             return true;
         }
         return false;
+    }
+
+    public function getUserData($email)
+    {
+        $connection = DbConnection::connect();
+        $query = $connection->prepare("SELECT firstname , lastname from users WHERE email = :email");
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $data = $query->fetch();
+//        var_dump($data);exit;
+        if ($data)
+        {
+            return $data;
+        }
+
     }
 
 }
