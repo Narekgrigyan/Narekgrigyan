@@ -8,7 +8,7 @@ class Profile
 
         if (!isset($_SESSION['email'])) {
             header('location: login');
-            return;
+            exit;
         }
 
 
@@ -19,7 +19,7 @@ class Profile
             header('location: login');
             return;
         }
-        echo "Welcome " . $userData['firstname'] . ' ' . $userData['lastname'] . ' ' . "<a href='logout'>Logout</a> ";
+        echo "Welcome " . $userData['firstname'] . ' , ' . $userData['lastname'] . '  ' . "<img style=' height:50px;' src='/MyProject/myImages/" . $userData['image'] . "'>" .' '. "<a href='logout'>Logout</a> ";
 
     }
 }

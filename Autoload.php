@@ -1,7 +1,7 @@
 <?php
 spl_autoload_register("Autoload::controllerClasses");
-
 spl_autoload_register("Autoload::modelClasses");
+
 
 
 class Autoload

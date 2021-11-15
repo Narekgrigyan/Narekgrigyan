@@ -16,7 +16,6 @@ if (isset($jsonRoute[$margeNames])) {
 
     $className = $jsonRoute[$margeNames]['controller'];
     $functionName = $jsonRoute[$margeNames]['action'];
-//var_dump($className);exit;
     $controller = new $className;
     $controller->$functionName();
 } else {

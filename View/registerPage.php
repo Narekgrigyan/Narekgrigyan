@@ -42,6 +42,8 @@
                 <label for="staticEmail" class="col-form-label">Image</label>
                 <div class="col-sm-10">
                     <input type="file" name="image">
+
+
                     <?php
                     if (isset($errors['image'])) {
                         $errorImage = $errors['image'];

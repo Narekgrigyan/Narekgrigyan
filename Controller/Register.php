@@ -7,22 +7,37 @@ class Register
         if (isset($_POST['reg_user'])) {
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
-            $image = $_POST['image'];
             $email = $_POST['email'];
             $password = $_POST['password'];
             $verPassword = $_POST['passwordConfirm'];
 
-            $file = $_FILES['image'];
-            print_r($file);exit;
-            $fileName = $_FILES['image']['name'];
-            $fileTmpName = $_FILES['image']['tmp_name'];
-            $fileSize = $_FILES['image']['size'];
-            $fileError = $_FILES['image']['error'];
-            $fileType = $_FILES['image']['type'];
+            $image = $_FILES['image'];
+            $fileName = $image['name'];
+            $fileTmpName = $image['tmp_name'];
+            $fileSize = $image['size'];
 
             $fileExt = explode('.', $fileName);
             $fileActualExt = strtolower(end($fileExt));
-//            print_r($fileExt);exit;
+            $allowed = ['jpg', 'jpeg', 'png', 'pdf'];
+
+            if (in_array($fileActualExt, $allowed)) {
+                    if ($fileSize < 1000000) {
+
+                        $imageName = uniqid('', true) . "." . $fileActualExt;
+
+                        $fileDestination = 'myImages/' . $imageName;
+                        if (move_uploaded_file($fileTmpName, $fileDestination)) {
+                            header('location: profile');
+                        } else {
+                            echo 'do not found image';
+                        }
+                    } else {
+                        echo "your file is too big!";
+                    }
+            } else {
+                echo "you can`t upload files of this type!";
+            }
+
 
             $errors = [];
 
@@ -32,7 +47,7 @@ class Register
             if (empty($lastname)) {
                 $errors['lastname'] = "your field empty, please fill in";
             }
-            if (empty($image)) {
+            if (empty($imageName)) {
                 $errors['image'] = "your image field empty, please download in";
             }
             if (empty($email)) {
@@ -53,7 +68,7 @@ class Register
                 $userManager = new UserManager();
                 if ($userManager->validateEmail($email)) {
                     if (!$userManager->checkEmail($email)) {
-                        if ($userManager->getParams($firstname, $lastname, $image, $email, $password)) {
+                        if ($userManager->insertUserData($firstname, $lastname, $imageName, $email, $password)) {
                             header('location: login');
                         } else {
                             $errors['email'] = "don`t working";

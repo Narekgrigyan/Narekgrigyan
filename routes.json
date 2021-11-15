@@ -1,5 +1,4 @@
 {
-
   "account/register": {
     "controller": "Register",
     "action": "registerAction"

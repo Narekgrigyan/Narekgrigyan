@@ -2,7 +2,7 @@
 
 class UserManager
 {
-    public function getParams($firstname, $lastname, $image, $email, $password): bool
+    public function insertUserData($firstname, $lastname, $imageName, $email, $password): bool
     {
         $connection = DbConnection::connect();
         $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -10,7 +10,7 @@ class UserManager
      VALUES (:firstname, :lastname, :image, :email, :password)");
         $query->bindParam(':firstname', $firstname);
         $query->bindParam(':lastname', $lastname);
-        $query->bindParam(':image', $image);
+        $query->bindParam(':image', $imageName);
         $query->bindParam(':email', $email);
         $query->bindParam(':password', $hash);
         return $query->execute();
@@ -55,13 +55,11 @@ class UserManager
     public function getUserData($email)
     {
         $connection = DbConnection::connect();
-        $query = $connection->prepare("SELECT firstname , lastname from users WHERE email = :email");
+        $query = $connection->prepare("SELECT * from users WHERE email = :email");
         $query->bindParam(':email', $email);
         $query->execute();
         $data = $query->fetch();
-//        var_dump($data);exit;
-        if ($data)
-        {
+        if ($data) {
             return $data;
         }
 
