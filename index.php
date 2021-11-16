@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+//session_start();
 
 require_once "Autoload.php";
 
@@ -12,8 +12,13 @@ $margeNames = $accountName . '/' . $actionName;
 $json = file_get_contents('routes.json');
 $jsonRoute = json_decode($json, true);
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($jsonRoute[$margeNames])) {
 
+//    var_dump($_SESSION, $_COOKIE);die;
     $className = $jsonRoute[$margeNames]['controller'];
     $functionName = $jsonRoute[$margeNames]['action'];
     $controller = new $className;

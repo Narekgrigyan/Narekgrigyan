@@ -15,9 +15,12 @@
     <div class="column col-3">
         <form method="post" action="register" enctype="multipart/form-data">
             <div class="form-group column">
-                <label for="staticEmail" class=" col-form-label">FirstName</label>
+                <label for="firstname" class=" col-form-label">FirstName</label>
                 <div class="col-sm-10">
-                    <input type="text" name="firstname" class="form-control" placeholder="First Name">
+                    <input type="text"  name="firstname" class="form-control" placeholder="First Name"
+                           value="<?php if (isset($firstname)):
+                               echo $firstname;
+                           endif; ?>">
                     <?php
                     if (isset($errors['firstname'])) {
                         $errorFirstname = $errors['firstname'];
@@ -26,24 +29,25 @@
                     ?>
                 </div>
             </div>
-            <div class="form-group column">
-                <label for="staticEmail" class="col-form-label">LastName</label>
+            <div class=" form-group column">
+                <label class="col-form-label">LastName</label>
                 <div class="col-sm-10">
-                    <input type="text" name="lastname" class="form-control" placeholder="Last Name">
+                    <input type="text" name="lastname" class="form-control" placeholder="Last Name"
+                           value="<?php if (isset($lastname)):
+                               echo $lastname;
+                           endif; ?>">
                     <?php
-                    if (isset($errors['firstname'])) {
-                        $errorFirstname = $errors['firstname'];
-                        echo "<p style='color: red'>$errorFirstname</p>";
+                    if (isset($errors['lastname'])) {
+                        $errorLastname = $errors['lastname'];
+                        echo "<p style='color: red'>$errorLastname</p>";
                     }
                     ?>
                 </div>
             </div>
             <div class="form-group column">
-                <label for="staticEmail" class="col-form-label">Image</label>
+                <label class="col-form-label">Image</label>
                 <div class="col-sm-10">
                     <input type="file" name="image">
-
-
                     <?php
                     if (isset($errors['image'])) {
                         $errorImage = $errors['image'];
@@ -55,7 +59,10 @@
             <div class="form-group column">
                 <label for="staticEmail" class="col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="email" name="email" class="form-control" id="staticEmail" placeholder="E-mail">
+                    <input type="email" name="email" class="form-control" id="staticEmail" placeholder="E-mail"
+                           value="<?php if (isset($email)):
+                               echo $email;
+                           endif; ?>" >
                     <?php
                     if (isset($errors['email'])) {
                         $errorEmail = $errors['email'];
@@ -82,6 +89,12 @@
                 <div class="col-sm-10">
                     <input type="password" name="passwordConfirm" class="form-control" id="floatingPasswordConfirm"
                            placeholder="Confirm Password">
+                    <?php
+                    if (isset($errors['passwordConfirm'])) {
+                        $errorVerPassword = $errors['passwordConfirm'];
+                        echo "<p style='color: red'>$errorVerPassword</p>";
+                    }
+                    ?>
                 </div>
             </div>
             <div class="col-sm-5">

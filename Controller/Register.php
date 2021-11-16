@@ -11,41 +11,32 @@ class Register
             $password = $_POST['password'];
             $verPassword = $_POST['passwordConfirm'];
 
+//            $name = test_input($_POST["name"]);
+
             $image = $_FILES['image'];
             $fileName = $image['name'];
             $fileTmpName = $image['tmp_name'];
-            $fileSize = $image['size'];
 
             $fileExt = explode('.', $fileName);
             $fileActualExt = strtolower(end($fileExt));
             $allowed = ['jpg', 'jpeg', 'png', 'pdf'];
 
             if (in_array($fileActualExt, $allowed)) {
-                    if ($fileSize < 1000000) {
 
-                        $imageName = uniqid('', true) . "." . $fileActualExt;
+                    $imageName = uniqid('', true) . "." . $fileActualExt;
 
-                        $fileDestination = 'myImages/' . $imageName;
-                        if (move_uploaded_file($fileTmpName, $fileDestination)) {
-                            header('location: profile');
-                        } else {
-                            echo 'do not found image';
-                        }
-                    } else {
-                        echo "your file is too big!";
-                    }
-            } else {
-                echo "you can`t upload files of this type!";
+                    $fileDestination = 'myImages/' . $imageName;
+                    move_uploaded_file($fileTmpName, $fileDestination);
             }
 
 
             $errors = [];
 
             if (empty($firstname)) {
-                $errors['firstname'] = "your field empty, please fill in";
+                $errors['firstname'] = "your field empty, please fill Firstname";
             }
             if (empty($lastname)) {
-                $errors['lastname'] = "your field empty, please fill in";
+                $errors['lastname'] = "your field empty, please fill Lastname";
             }
             if (empty($imageName)) {
                 $errors['image'] = "your image field empty, please download in";
@@ -54,15 +45,23 @@ class Register
                 $errors['email'] = "your field empty, please fill in";
             }
             if (empty($password)) {
-                $errors['password'] = "your field empty, please fill in";
+                $errors['password'] = "your field empty, please fill password";
             }
             if (empty($verPassword)) {
-                $errors['passwordConfirm'] = "your field empty, please fill in";
+                $errors['passwordConfirm'] = "your field empty, please confirm password";
             }
-            if ($password !== $verPassword) {
-                echo "please fill correct password";
+            if ($verPassword !== $password) {
+                $errors['passwordConfirm'] = "please fill correct password";
             }
-
+            if (isset($firstname)) {
+                if (preg_match("/^[a-zA-Z-' ]*$/",
+                    $firstname)) {
+                    $errors['firstname'] = "Only letters and white space allowed";
+                }
+            }
+            if (!preg_match($lastname, "/^[a-zA-Z-' ]*$/")) {
+                $errors['lastname'] = "Only letters and white space allowed";
+            }
 
             if (!$errors) {
                 $userManager = new UserManager();
